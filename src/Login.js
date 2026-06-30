@@ -40,74 +40,77 @@ function Login() {
         {`
           .login-wrapper {
             min-height: 90vh;
-
             background-image: url("https://myqrcode.com/wp-content/uploads/2024/04/QR-Codes-for-Prescription-Reordering-and-Healthcare-Appointments_Main-Illustration.webp");
-            background-size: cover;      
-           background-position: center;  
-           background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 16px;
           }
 
           .login-card {
-            width: 450px;
-            background: white;
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-            animation: fadeIn 0.8s ease-in-out;
+            width: 100%;
+            max-width: 440px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: clamp(20px, 5vw, 40px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            animation: fadeIn 0.6s ease-in-out;
           }
 
           @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(24px); }
             to { opacity: 1; transform: translateY(0); }
           }
 
           .page-title {
-            font-weight: 700;
+            font-weight: 800;
             color: #4B0082;
             margin-bottom: 20px;
+            font-size: clamp(20px, 5vw, 26px);
           }
 
           .form-control {
             border-radius: 12px;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
+            padding: 12px 15px;
+            border: 1.5px solid #ddd;
             transition: 0.3s;
+            font-size: 15px;
           }
 
           .form-control:focus {
             box-shadow: 0 0 8px rgba(75, 0, 130, 0.3);
             border-color: #4B0082;
+            outline: none;
           }
 
           .login-btn {
             background: linear-gradient(135deg, #4B0082, #1e90ff);
             border: none;
             border-radius: 50px;
-            padding: 10px;
-            font-weight: 600;
+            padding: 13px;
+            font-weight: 700;
+            font-size: 16px;
             color: white;
+            width: 100%;
+            cursor: pointer;
             transition: 0.3s;
           }
 
-          .login-btn:hover {
-            opacity: 0.9;
-          }
+          .login-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
           .register-link {
             color: #4B0082;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
+            text-decoration: underline;
           }
 
-          @media (max-width: 576px) {
-            .login-card {
-              width: 100%;
-            }
-          }
+          .navbar { padding: 12px 16px !important; }
+          .navbar h3 { font-size: clamp(16px, 4vw, 22px); }
         `}
       </style>
        

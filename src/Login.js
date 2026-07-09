@@ -3,31 +3,32 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+const API = process.env.REACT_APP_API_URL || "http://localhost:8080/api";
+
 function Login() {
 
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setError("");
+    setLoading(true);
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API_URL || "http://localhost:8080/api"}/auth/login`,
-        { email, password }
-      );
-
+      const res = await axios.post(`${API}/auth/login`, { email, password });
       localStorage.setItem("user", JSON.stringify(res.data));
-
       if (res.data.role === "PATIENT") {
         navigate("/patient-home");
       } else {
         navigate("/doctor-home");
       }
-
-    } catch (error) {
-      alert("Invalid Credentials");
+    } catch (err) {
+      setError("❌ Invalid email or password. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -147,6 +148,12 @@ function Login() {
             🔐 Welcome Back
           </h2>
 
+          {error && (
+            <div style={{ background:"#fff0f0", border:"1.5px solid #ffcccc", color:"#cc0000", borderRadius:10, padding:"10px 14px", marginBottom:12, fontSize:14 }}>
+              {error}
+            </div>
+          )}
+
           <form onSubmit={handleLogin}>
 
             <input
@@ -165,8 +172,8 @@ function Login() {
               required
             />
 
-            <button className="login-btn w-100">
-              Login
+            <button className="login-btn w-100" disabled={loading}>
+              {loading ? "⏳ Logging in..." : "Login"}
             </button>
 
           </form>

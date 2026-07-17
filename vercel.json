@@ -1,7 +1,12 @@
 {
-  "buildCommand": "CI=false npm run build",
-  "outputDirectory": "build",
+  "services": {
+    "frontend": {
+      "root": ".",
+      "buildCommand": "CI=false npm run build",
+      "outputDirectory": "build"
+    }
+  },
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": { "service": "frontend" } }
   ]
 }

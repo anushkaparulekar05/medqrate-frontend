@@ -3,7 +3,7 @@ const path = require("path");
 
 const DB_PATH = process.env.NODE_ENV === "test"
   ? path.join(__dirname, "database.test.json")
-  : path.join(__dirname, "database.json");
+  : (process.env.VERCEL ? "/tmp/database.json" : path.join(__dirname, "database.json"));
 
 const defaultData = {
   users: [

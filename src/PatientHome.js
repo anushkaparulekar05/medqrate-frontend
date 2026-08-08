@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const BASE_URL = process.env.REACT_APP_API_URL || (window.location.hostname === "localhost" ? "http://localhost:8080/api" : "/api");
+const BASE_URL = window.location.hostname === "localhost" ? "http://localhost:8080/api" : "/api";
 
 // ── Alarm sound ──
 function playAlarm() {

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const API = process.env.REACT_APP_API_URL || (window.location.hostname === "localhost" ? "http://localhost:8080/api" : "/api");
+const API = window.location.hostname === "localhost" ? "http://localhost:8080/api" : "/api";
 
 function Login() {
 
